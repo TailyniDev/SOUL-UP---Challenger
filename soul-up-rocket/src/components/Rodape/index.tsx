@@ -19,7 +19,7 @@ export default function Rodape() {
       </div>
 
       <div>
-        <p>© 2026 SoulUpRocket - Challenge SoulUp | 1º Semestre</p>
+        <p>© 2026 SoulUpRocket - Challenge SoulUp | 2º Semestre</p>
       </div>
     </footer>
   );
