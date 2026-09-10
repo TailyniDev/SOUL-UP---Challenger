@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Home() {
   return (
     <>
@@ -9,8 +11,8 @@ export default function Home() {
       </p>
 
       <div>
-        <a href="/login">Começar agora 🚀</a>
-        <a href="/sobre">Saiba mais</a>
+        <Link to="/login">Começar agora 🚀</Link>
+        <Link to="/sobre">Saiba mais</Link>
       </div>
 
       <div>
