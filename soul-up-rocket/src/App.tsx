@@ -1,5 +1,6 @@
 import Cabecalho from "./components/Cabecalho";
 import Rodape from "./components/Rodape";
+import { Outlet } from "react-router-dom";
 
 export default function App() {
   return (
@@ -7,7 +8,7 @@ export default function App() {
       <Cabecalho />
 
       <main>
-        <h2>Conteúdo da página vai aqui</h2>
+        <Outlet />
       </main>
 
       <Rodape />
