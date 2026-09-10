@@ -23,6 +23,9 @@ export default function Menu() {
           <Link to="/solucao">Solução</Link>
         </li>
         <li>
+          <Link to="/missoes">Missões</Link>
+        </li>
+        <li>
           <Link to="/login">Login</Link>
         </li>
       </ul>

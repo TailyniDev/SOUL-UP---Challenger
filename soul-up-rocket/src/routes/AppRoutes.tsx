@@ -6,6 +6,7 @@ import Sobre from '../pages/Sobre'
 import Faq from '../pages/Faq'
 import Contato from '../pages/Contato'
 import Solucao from '../pages/Solucao'
+import Missoes from '../pages/Missoes';
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { path: 'faq', element: <Faq /> },
       { path: 'contato', element: <Contato /> },
       { path: 'solucao', element: <Solucao /> },
+      { path: 'missoes', element: <Missoes /> },
     ],
   },
 ])
