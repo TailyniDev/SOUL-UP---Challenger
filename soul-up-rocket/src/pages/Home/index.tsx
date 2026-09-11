@@ -1,34 +1,54 @@
-import { Link } from 'react-router';
+import { Link } from "react-router";
 
 export default function Home() {
   return (
     <>
-      <span>🌿 Missão ativa</span>
-      <h1>Pequenas ações, grandes mudanças</h1>
-      <p>
-        Complete missões diárias, suba de nível e transforme seus hábitos em
-        impacto real. Cada passo conta. Cada ação importa.
-      </p>
+      <section className="bg-slate-900 text-center py-20 px-4 text-white">
+        <span className="inline-block bg-emerald-900 text-emerald-400 text-sm px-4 py-1 rounded-full mb-6">
+          🌿 Missão ativa
+        </span>
 
-      <div>
-        <Link to="/login">Começar agora 🚀</Link>
-        <Link to="/sobre">Saiba mais</Link>
-      </div>
+        <h1 className="text-4xl font-bold mb-4">
+          Pequenas ações,
+          <br />
+          <span className="text-emerald-400">grandes mudanças</span>
+        </h1>
 
-      <div>
-        <div>
-          <span>2.4k</span>
-          <span>usuários ativos</span>
+        <p className="text-slate-300 max-w-lg mx-auto mb-8">
+          Complete missões diárias, suba de nível e transforme seus hábitos em
+          impacto real. Cada passo conta. Cada ação importa.
+        </p>
+
+        <div className="flex gap-4 justify-center mb-10">
+          <a
+            href="/login"
+            className="bg-emerald-600 text-white font-semibold px-6 py-3 rounded-full"
+          >
+            Começar agora 🚀
+          </a>
+          <Link
+            to="/sobre"
+            className="border border-slate-500 text-white px-6 py-3 rounded-full"
+          >
+            Saiba mais
+          </Link>
         </div>
-        <div>
-          <span>18k</span>
-          <span>missões concluídas</span>
+
+        <div className="flex gap-8 justify-center">
+          <div>
+            <p className="text-2xl font-bold">2.4k</p>
+            <p className="text-xs text-slate-400">usuários ativos</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold">18k</p>
+            <p className="text-xs text-slate-400">missões concluídas</p>
+          </div>
+          <div>
+            <p className="text-2xl font-bold">95%</p>
+            <p className="text-xs text-slate-400">satisfação</p>
+          </div>
         </div>
-        <div>
-          <span>95%</span>
-          <span>satisfação</span>
-        </div>
-      </div>
+      </section>
 
       <div>
         <span>Como funciona</span>
