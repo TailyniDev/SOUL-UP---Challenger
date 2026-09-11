@@ -8,6 +8,7 @@ import Contato from '../pages/Contato'
 import Solucao from '../pages/Solucao'
 import Missoes from '../pages/Missoes';
 import MissaoDetalhe from '../pages/MissaoDetalhe'
+import Login from '../pages/Login';
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
       { path: 'solucao', element: <Solucao /> },
       { path: 'missoes', element: <Missoes /> },
       { path: 'missoes/:id', element: <MissaoDetalhe /> },
+      { path: 'login', element: <Login /> },
     ],
   },
 ])

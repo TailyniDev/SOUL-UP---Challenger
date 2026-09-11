@@ -12,6 +12,8 @@ export default function Menu() {
         <li><NavLink to="/contato" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Contato</NavLink></li>
         <li><NavLink to="/solucao" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Solução</NavLink></li>
         <li><NavLink to="/missoes" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Missões</NavLink></li>
+        <li><NavLink to="/login" className={({ isActive }) => isActive ? "text-primary font-medium"
+        : "text-text font-medium hover:text-primary transition-colors"}> Login </NavLink> </li>
       </ul>
     </nav>
   );
