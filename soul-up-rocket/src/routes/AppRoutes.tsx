@@ -9,6 +9,7 @@ import Solucao from '../pages/Solucao'
 import Missoes from '../pages/Missoes';
 import MissaoDetalhe from '../pages/MissaoDetalhe'
 import Login from '../pages/Login';
+import Cadastro from '../pages/Cadastro';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: 'missoes', element: <Missoes /> },
       { path: 'missoes/:id', element: <MissaoDetalhe /> },
       { path: 'login', element: <Login /> },
+      { path: 'cadastro', element: <Cadastro /> },
     ],
   },
 ])
