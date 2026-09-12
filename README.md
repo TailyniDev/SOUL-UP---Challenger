@@ -66,8 +66,9 @@ soul-up-rocket/
 
 | Foto | Nome | RM | Turma | Links |
 |---|---|---|---|---|
-| 🧑‍💻 | Sabrina Fraga Lima | 572548 | 1TDSPG | [GitHub](https://github.com/sabrinafraga) · [LinkedIn](https://www.linkedin.com/in/sabrina-fraga-562777403/) |
-| 🧑‍💻 | Tailyni Victoria Renovato Satirio | 570517 | 1TDSPG | [GitHub](https://github.com/TailyniDev) · [LinkedIn](https://www.linkedin.com/in/tailynisatiriodev/) |
+| 🧑‍💻 | Sabrina Fraga Lima | 572548 | 1TDSPJ | [GitHub](https://github.com/sabrinafraga) · [LinkedIn](https://www.linkedin.com/in/sabrina-fraga-562777403/) |
+| 🧑‍💻 | Tailyni Victoria Renovato Satirio | 570517 | 1TDSPJ | [GitHub](https://github.com/TailyniDev) · [LinkedIn](https://www.linkedin.com/in/tailynisatiriodev/) |
+| 🧑‍💻 | Gabriel Tadeu | 572548 | 1TDSPJ | [GitHub](https://github.com/Tadeul) · [LinkedIn](https://www.linkedin.com/in//) |
 
 ---
 
