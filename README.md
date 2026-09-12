@@ -66,9 +66,9 @@ soul-up-rocket/
 
 | Foto | Nome | RM | Turma | Links |
 |---|---|---|---|---|
-| 🧑‍💻 | Sabrina Fraga Lima | 572548 | 1TDSPJ | [GitHub](https://github.com/sabrinafraga) · [LinkedIn](https://www.linkedin.com/in/sabrina-fraga-562777403/) |
-| 🧑‍💻 | Tailyni Victoria Renovato Satirio | 570517 | 1TDSPJ | [GitHub](https://github.com/TailyniDev) · [LinkedIn](https://www.linkedin.com/in/tailynisatiriodev/) |
-| 🧑‍💻 | Gabriel Tadeu | 572548 | 1TDSPJ | [GitHub](https://github.com/Tadeul) · [LinkedIn](https://www.linkedin.com/in//) |
+| <img src="src/assets/imgs/sabrina.jpg" width="60" height="60" style="border-radius:50%;"> | Sabrina Fraga Lima | 572548 | 1TDSPJ | [GitHub](https://github.com/sabrinafraga) · [LinkedIn](https://www.linkedin.com/in/sabrina-fraga-562777403/) |
+| <img src="src/assets/imgs/tailyni.jpg" width="60" height="60" style="border-radius:50%;"> | Tailyni Victoria Renovato Satirio | 570517 | 1TDSPJ | [GitHub](https://github.com/TailyniDev) · [LinkedIn](https://www.linkedin.com/in/tailynisatiriodev/) |
+| <img src="src/assets/imgs/gabriel.jpg" width="60" height="60" style="border-radius:50%;"> | Gabriel Tadeu | 571074 | 1TDSPJ | [GitHub](https://github.com/Tadeul) · [LinkedIn](https://www.linkedin.com/in/gabriel-tadeu-telles-brando-330216337/) |
 
 ---
 
