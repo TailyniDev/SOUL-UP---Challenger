@@ -95,6 +95,7 @@ export default function Integrantes() {
               </a>
             </div>
           </div>
+          </div>
           <div className="bg-white border border-border rounded-2xl shadow-md overflow-hidden flex flex-col items-center text-center p-6 hover:shadow-lg transition-shadow">
             <img
               src={fotoGabriel}
@@ -133,6 +134,5 @@ export default function Integrantes() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
