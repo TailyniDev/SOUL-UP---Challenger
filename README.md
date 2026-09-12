@@ -105,7 +105,7 @@ O projeto ficará disponível em `http://localhost:5173` (porta padrão do Vite)
 
 - 🔗 **Repositório GitHub:** https://github.com/TailyniDev/SOUL-UP---Challenger
 - 🌐 **Deploy (Vercel):** _em breve_
-- 🎥 **Vídeo de apresentação (YouTube):** _em breve_
+- 🎥 **Vídeo de apresentação (YouTube):** https://youtu.be/uJxVWLbzB_8
 
 ---
 
