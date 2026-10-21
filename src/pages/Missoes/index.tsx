@@ -11,9 +11,14 @@ const ICONES: Record<Missao['categoria'], string> = {
 
 export default function Missoes() {
   const [missoes, setMissoes] = useState<Missao[]>([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
 
   useEffect(() => {
-    listarMissoes().then(setMissoes).catch(console.error)
+    listarMissoes()
+      .then(setMissoes)
+      .catch((e: Error) => setErro(e.message))
+      .finally(() => setCarregando(false))
   }, [])
 
   return (
@@ -36,6 +41,20 @@ export default function Missoes() {
               Complete e ganhe dinheiro real para sua mobilidade
             </p>
           </div>
+
+          {carregando && (
+            <p className="text-center text-slate-500 mb-6">
+              Carregando missões... (a primeira vez pode levar até 1 minuto)
+            </p>
+          )}
+
+          {erro && <p className="text-center text-red-500 mb-6">{erro}</p>}
+
+          {!carregando && !erro && missoes.length === 0 && (
+            <p className="text-center text-slate-500 mb-6">
+              Nenhuma missão cadastrada.
+            </p>
+          )}
 
           <div className="grid md:grid-cols-3 gap-6">
             {missoes.map((missao) => (
