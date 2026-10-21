@@ -1,19 +1,7 @@
-import { useState, useEffect } from 'react'
 import { missoes } from '../../data/missoes'
 import { Link } from 'react-router'
 
 export default function Missoes() {
-  const [saldo, setSaldo] = useState(12.5)
-
-  useEffect(() => {
-    console.log('Saldo atualizado:', saldo)
-  }, [saldo])
-
-  function completarMissao(recompensa: string) {
-    const valor = parseFloat(recompensa.replace('R$', '').replace(',', '.'))
-    setSaldo(saldo + valor)
-  }
-
   return (
     <>
       <section className="bg-slate-900 text-center py-20 px-4 text-white">
@@ -28,7 +16,6 @@ export default function Missoes() {
         <div className="inline-flex items-center gap-3 bg-emerald-900 text-white px-6 py-3 rounded-full">
           <span className="text-xl">💰</span>
           <span className="text-sm text-emerald-300">Seu Saldo</span>
-          <strong className="text-lg">R$ {saldo.toFixed(2)}</strong>
         </div>
       </section>
 
@@ -57,7 +44,6 @@ export default function Missoes() {
                 </strong>
                 <div className="flex items-center justify-between gap-3">
                   <button
-                    onClick={() => completarMissao(missao.recompensa)}
                     className="bg-emerald-600 text-white font-semibold px-4 py-2 rounded-full text-sm hover:bg-emerald-700 transition-colors"
                   >
                     Completar
