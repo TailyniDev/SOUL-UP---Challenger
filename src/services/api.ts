@@ -15,3 +15,4 @@ async function requisicao<T>(caminho: string, opcoes?: RequestInit): Promise<T> 
 }
 
 export const listarMissoes = () => requisicao<Missao[]>('/missoes')
+export const buscarMissao = (id: number) => requisicao<Missao>(`/missoes/${id}`)
