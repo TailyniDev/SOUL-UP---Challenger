@@ -1,19 +1,43 @@
 import { NavLink } from "react-router";
 
+const LINKS = [
+  { to: "/", rotulo: "Inicial" },
+  { to: "/integrantes", rotulo: "Integrantes" },
+  { to: "/sobre", rotulo: "Sobre" },
+  { to: "/faq", rotulo: "FAQ" },
+  { to: "/contato", rotulo: "Contato" },
+  { to: "/solucao", rotulo: "Solução" },
+  { to: "/missoes", rotulo: "Missões" },
+  { to: "/login", rotulo: "Login" },
+];
 
-export default function Menu() {
+type MenuProps = {
+  aberto: boolean;
+  aoNavegar: () => void;
+};
+
+export default function Menu({ aberto, aoNavegar }: MenuProps) {
   return (
-    <nav>
-      <ul className="flex gap-8 items-center list-none">
-        <li><NavLink to="/" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Inicial</NavLink></li>
-        <li><NavLink to="/integrantes" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Integrantes</NavLink></li>
-        <li><NavLink to="/sobre" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Sobre</NavLink></li>
-        <li><NavLink to="/faq" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>FAQ</NavLink></li>
-        <li><NavLink to="/contato" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Contato</NavLink></li>
-        <li><NavLink to="/solucao" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Solução</NavLink></li>
-        <li><NavLink to="/missoes" className={({ isActive }) => isActive ? "text-primary font-medium" : "text-text font-medium hover:text-primary transition-colors"}>Missões</NavLink></li>
-        <li><NavLink to="/login" className={({ isActive }) => isActive ? "text-primary font-medium"
-        : "text-text font-medium hover:text-primary transition-colors"}> Login </NavLink> </li>
+    <nav
+      id="menu-principal"
+      className={`${aberto ? "block" : "hidden"} w-full lg:block lg:w-auto`}
+    >
+      <ul className="flex flex-col gap-4 py-4 list-none lg:flex-row lg:gap-8 lg:items-center lg:py-0">
+        {LINKS.map((link) => (
+          <li key={link.to}>
+            <NavLink
+              to={link.to}
+              onClick={aoNavegar}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-primary font-medium"
+                  : "text-text font-medium hover:text-primary transition-colors"
+              }
+            >
+              {link.rotulo}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
