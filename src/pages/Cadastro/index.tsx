@@ -43,9 +43,8 @@ export default function Cadastro() {
             <input
               type="text"
               placeholder="Nome"
-              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${
-                errors.nome ? 'border-red-400' : 'border-slate-300'
-              }`}
+              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.nome ? 'border-red-400' : 'border-slate-300'
+                }`}
               {...register('nome', { required: 'Informe seu nome' })}
             />
             {errors.nome && (
@@ -57,9 +56,8 @@ export default function Cadastro() {
             <input
               type="text"
               placeholder="Digite seu CPF"
-              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${
-                errors.cpf ? 'border-red-400' : 'border-slate-300'
-              }`}
+              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.cpf ? 'border-red-400' : 'border-slate-300'
+                }`}
               {...register('cpf', {
                 required: 'Informe seu CPF',
                 pattern: {
@@ -77,9 +75,8 @@ export default function Cadastro() {
             <input
               type="tel"
               placeholder="Digite seu número de celular"
-              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${
-                errors.celular ? 'border-red-400' : 'border-slate-300'
-              }`}
+              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.celular ? 'border-red-400' : 'border-slate-300'
+                }`}
               {...register('celular', { required: 'Informe seu celular' })}
             />
             {errors.celular && (
@@ -91,9 +88,8 @@ export default function Cadastro() {
             <input
               type="password"
               placeholder="Password"
-              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${
-                errors.senha ? 'border-red-400' : 'border-slate-300'
-              }`}
+              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.senha ? 'border-red-400' : 'border-slate-300'
+                }`}
               {...register('senha', {
                 required: 'Informe uma senha',
                 minLength: { value: 6, message: 'Mínimo de 6 caracteres' },
@@ -108,9 +104,8 @@ export default function Cadastro() {
             <input
               type="email"
               placeholder="Email"
-              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${
-                errors.email ? 'border-red-400' : 'border-slate-300'
-              }`}
+              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.email ? 'border-red-400' : 'border-slate-300'
+                }`}
               {...register('email', {
                 required: 'Informe seu e-mail',
                 pattern: {
@@ -133,11 +128,7 @@ export default function Cadastro() {
           </button>
 
           <div className="text-center text-sm mt-2 space-y-1">
-            <p>
-              <Link to="/esqueci-senha" className="text-slate-500 hover:text-slate-700">
-                Esqueceu a senha?
-              </Link>
-            </p>
+            {/* Antigo esqueci a senha */}
             <p className="text-slate-600">
               Já tem uma conta?{' '}
               <Link to="/login" className="text-primary font-medium hover:text-primary-dark">
