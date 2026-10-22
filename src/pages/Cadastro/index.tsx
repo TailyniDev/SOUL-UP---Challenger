@@ -1,24 +1,40 @@
-import { Link } from 'react-router'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router'
 import { useForm } from 'react-hook-form'
+import { cadastrarUsuario, criarMissoesIniciais } from '../../services/api'
 
 type CadastroFormData = {
   nome: string
   cpf: string
-  celular: string
   senha: string
   email: string
 }
 
 export default function Cadastro() {
+  const navigate = useNavigate()
+  const [erroApi, setErroApi] = useState('')
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<CadastroFormData>()
 
-  function onSubmit(data: CadastroFormData) {
-    // TODO: integrar com a API (Sprint 4) — por enquanto só loga os dados
-    console.log('Dados do cadastro:', data)
+  async function onSubmit(data: CadastroFormData) {
+    setErroApi('')
+    try {
+      const usuario = await cadastrarUsuario(data)
+      let mensagem = 'Cadastro realizado com sucesso! Faça login para continuar.'
+      try {
+        await criarMissoesIniciais(usuario.cpf)
+      } catch {
+        mensagem =
+          'Cadastro realizado! Não foi possível criar suas missões agora; você poderá gerá-las na tela de Missões.'
+      }
+      navigate('/login', { state: { mensagem } })
+    } catch (e) {
+      setErroApi((e as Error).message)
+    }
   }
 
   return (
@@ -73,19 +89,6 @@ export default function Cadastro() {
 
           <div>
             <input
-              type="tel"
-              placeholder="Digite seu número de celular"
-              className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.celular ? 'border-red-400' : 'border-slate-300'
-                }`}
-              {...register('celular', { required: 'Informe seu celular' })}
-            />
-            {errors.celular && (
-              <p className="text-xs text-red-500 mt-1 ml-4">{errors.celular.message}</p>
-            )}
-          </div>
-
-          <div>
-            <input
               type="password"
               placeholder="Password"
               className={`w-full border rounded-full px-5 py-3 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${errors.senha ? 'border-red-400' : 'border-slate-300'
@@ -119,6 +122,10 @@ export default function Cadastro() {
             )}
           </div>
 
+          {erroApi && (
+            <p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">{erroApi}</p>
+          )}
+
           <button
             type="submit"
             disabled={isSubmitting}
@@ -128,7 +135,6 @@ export default function Cadastro() {
           </button>
 
           <div className="text-center text-sm mt-2 space-y-1">
-            {/* Antigo esqueci a senha */}
             <p className="text-slate-600">
               Já tem uma conta?{' '}
               <Link to="/login" className="text-primary font-medium hover:text-primary-dark">
