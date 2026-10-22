@@ -32,6 +32,7 @@ Muitas pessoas deixam de utilizar o transporte público por causa do custo diár
 ```
 soul-up-rocket/
 ├── public/
+├── vercel.json
 ├── src/
 │   ├── assets/
 │   │   └── imgs/
@@ -41,6 +42,11 @@ soul-up-rocket/
 │   │   └── Rodape/
 │   ├── data/
 │   │   └── missoes.ts
+│   ├── services/
+│   │   ├── api.ts
+│   │   └── sessao.ts
+│   ├── types/
+│   │   └── index.ts
 │   ├── pages/
 │   │   ├── Home/
 │   │   ├── Integrantes/
@@ -58,7 +64,6 @@ soul-up-rocket/
 │   └── main.tsx
 ├── index.html
 ├── package.json
-├── tailwind.config.js
 ├── tsconfig.json
 └── vite.config.ts
 ```
@@ -93,7 +98,7 @@ soul-up-rocket/
 git clone https://github.com/TailyniDev/SOUL-UP---Challenger.git
 
 # entre na pasta do projeto
-cd soul-up-rocket
+cd SOUL-UP---Challenger
 
 # instale as dependências
 npm install
@@ -107,7 +112,9 @@ O projeto ficará disponível em `http://localhost:5173` (porta padrão do Vite)
 ### Links importantes
 
 - 🔗 **Repositório GitHub:** https://github.com/TailyniDev/SOUL-UP---Challenger
-- 🌐 **Deploy (Vercel):** _em breve_
+- 🌐 **Deploy (Vercel):** _cole aqui a URL da Vercel_
+- ⚙️ **API publicada (Render):** https://rocket-api-0me7.onrender.com
+- 💻 **Repositório da API:** https://github.com/Tadeul/rocket-api
 - 🎥 **Vídeo de apresentação (YouTube):** https://youtu.be/uJxVWLbzB_8
 
 ---
