@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router'
 import { concluirMissao, criarMissoesIniciais, listarMissoes } from '../../services/api'
-import { lerSessao, salvarSessao } from '../../services/sessao'
+import { encerrarSessao, lerSessao, salvarSessao } from '../../services/sessao'
 import type { Missao } from '../../types'
 
 const ICONES: Record<Missao['categoria'], string> = {
@@ -19,6 +19,8 @@ export default function Missoes() {
   const [concluindoId, setConcluindoId] = useState<number | null>(null)
   const [gerando, setGerando] = useState(false)
 
+  const navigate = useNavigate()
+  const mensagemRota = (useLocation().state as { mensagem?: string } | null)?.mensagem
   const cpf = usuario?.cpf
 
   useEffect(() => {
@@ -28,6 +30,11 @@ export default function Missoes() {
       .catch((e: Error) => setErro(e.message))
       .finally(() => setCarregando(false))
   }, [cpf])
+
+  function sair() {
+    encerrarSessao()
+    navigate('/login', { state: { mensagem: 'Você saiu da sua conta.' } })
+  }
 
   async function concluir(missao: Missao) {
     if (!usuario) return
@@ -64,6 +71,16 @@ export default function Missoes() {
     }
   }
 
+  if (!usuario) {
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ mensagem: 'Faça login para ver e completar suas missões.' }}
+      />
+    )
+  }
+
   return (
     <>
       <section className="bg-slate-900 text-center py-20 px-4 text-white">
@@ -80,26 +97,18 @@ export default function Missoes() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-2">📋 Missões de hoje</h2>
-            {usuario ? (
-              <p className="text-sm text-slate-600">
-                Olá, <strong>{usuario.nome}</strong> · Saldo:{' '}
-                <strong className="text-emerald-600">{usuario.pontos} EcoCoins</strong>
-              </p>
-            ) : (
-              <p className="text-sm text-slate-600">
-                Complete e ganhe dinheiro real para sua mobilidade
-              </p>
-            )}
-          </div>
-
-          {!usuario && (
-            <p className="text-center text-slate-600 mb-6">
-              Entre na sua conta para ver e completar suas missões.{' '}
-              <Link to="/login" className="text-emerald-600 font-medium hover:text-emerald-700">
-                Fazer login
-              </Link>
+            <p className="text-sm text-slate-600">
+              Olá, <strong>{usuario.nome}</strong> · Saldo:{' '}
+              <strong className="text-emerald-600">{usuario.pontos} EcoCoins</strong>{' · '}
+              <button
+                type="button"
+                onClick={sair}
+                className="text-slate-500 underline hover:text-slate-700"
+              >
+                Sair
+              </button>
             </p>
-          )}
+          </div>
 
           {carregando && (
             <p className="text-center text-slate-500 mb-6">
@@ -107,10 +116,11 @@ export default function Missoes() {
             </p>
           )}
 
+          {mensagemRota && <p className="text-center text-amber-700 mb-6">{mensagemRota}</p>}
           {erro && <p className="text-center text-red-500 mb-6">{erro}</p>}
           {aviso && <p className="text-center text-emerald-700 mb-6">{aviso}</p>}
 
-          {usuario && !carregando && !erro && missoes.length === 0 && (
+          {!carregando && !erro && missoes.length === 0 && (
             <div className="text-center mb-6">
               <p className="text-slate-500 mb-4">Você ainda não tem missões.</p>
               <button
