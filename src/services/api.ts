@@ -27,13 +27,19 @@ export const listarMissoes = (cpf?: string) =>
     requisicao<Missao[]>(cpf ? `/missoes?cpf=${encodeURIComponent(cpf)}` : '/missoes')
 export const buscarMissao = (id: number) => requisicao<Missao>(`/missoes/${id}`)
 
+export const cadastrarUsuario = (dados: NovoUsuario) =>
+    requisicao<Usuario>('/usuarios', { method: 'POST', body: JSON.stringify(dados) })
+
+export const login = (credenciais: Credenciais) =>
+    requisicao<Usuario>('/usuarios/login', { method: 'POST', body: JSON.stringify(credenciais) })
+
 export const cadastrarMissao = (dados: NovaMissao) =>
     requisicao<Missao>('/missoes', { method: 'POST', body: JSON.stringify(dados) })
 
 export const concluirMissao = (id: number) =>
     requisicao<ConclusaoMissao>(`/missoes/${id}/concluir`, { method: 'PATCH' })
 
-// A API cadastra uma missão por vez, ent as missões do dia são em sequência
+// A API cadastra uma missão por vez, então criamos as missões do dia em sequência
 export async function criarMissoesIniciais(cpf: string) {
     for (const missao of MISSOES_INICIAIS) {
         await cadastrarMissao({ ...missao, cpfUsuario: cpf })
