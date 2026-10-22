@@ -1,21 +1,34 @@
-import { Link } from "react-router";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { login } from "../../services/api";
+import { salvarSessao } from "../../services/sessao";
+import type { Credenciais } from "../../types";
 
-type LoginFormData = {
-  email: string;
-  senha: string;
-};
+type LoginFormData = Credenciais;
 
 export default function Login() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const mensagem = (location.state as { mensagem?: string } | null)?.mensagem;
+  const [erroApi, setErroApi] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>();
 
-  function onSubmit(data: LoginFormData) {
-    // Lembrete: integrar com a API (Sprint 4) — por enquanto só loga os dados
-    console.log("Dados do login:", data);
+  async function onSubmit(data: LoginFormData) {
+    setErroApi("");
+    try {
+      const cpf = data.cpf.replace(/\D/g, "");
+      const usuario = await login({ cpf, senha: data.senha });
+      salvarSessao(usuario);
+      navigate("/missoes");
+    } catch (e) {
+      setErroApi((e as Error).message);
+    }
   }
 
   return (
@@ -33,6 +46,12 @@ export default function Login() {
           </p>
         </div>
 
+        {mensagem && (
+          <p className="text-sm text-emerald-700 bg-emerald-50 rounded-lg px-4 py-2 mb-4 text-center">
+            {mensagem}
+          </p>
+        )}
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
@@ -40,30 +59,29 @@ export default function Login() {
         >
           <div>
             <label
-              htmlFor="email"
+              htmlFor="cpf"
               className="block text-sm font-medium text-slate-700 mb-1"
             >
-              E-mail
+              CPF
             </label>
             <input
-              id="email"
-              type="email"
-              placeholder="seu@email.com"
+              id="cpf"
+              type="text"
+              inputMode="numeric"
+              placeholder="000.000.000-00"
               className={`w-full border rounded-lg px-4 py-2 text-sm outline-none transition-colors focus:ring-2 focus:ring-emerald-500 ${
-                errors.email ? "border-red-400" : "border-slate-300"
+                errors.cpf ? "border-red-400" : "border-slate-300"
               }`}
-              {...register("email", {
-                required: "Informe seu e-mail",
+              {...register("cpf", {
+                required: "Informe seu CPF",
                 pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                  message: "Digite um e-mail válido",
+                  value: /^\d{3}\.?\d{3}\.?\d{3}-?\d{2}$/,
+                  message: "Digite um CPF válido",
                 },
               })}
             />
-            {errors.email && (
-              <p className="text-xs text-red-500 mt-1">
-                {errors.email.message}
-              </p>
+            {errors.cpf && (
+              <p className="text-xs text-red-500 mt-1">{errors.cpf.message}</p>
             )}
           </div>
 
@@ -95,6 +113,12 @@ export default function Login() {
               </p>
             )}
           </div>
+
+          {erroApi && (
+            <p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-2">
+              {erroApi}
+            </p>
+          )}
 
           <button
             type="submit"
