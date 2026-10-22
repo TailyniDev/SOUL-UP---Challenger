@@ -16,3 +16,10 @@ export interface ErroApi {
     erro: string
     mensagem: string
 }
+
+export type NovaMissao = Omit<Missao, 'idMissao' | 'status'>
+
+export interface ConclusaoMissao {
+    missao: Missao
+    pontosUsuario: number
+}
