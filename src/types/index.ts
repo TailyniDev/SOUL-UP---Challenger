@@ -37,5 +37,5 @@ export type NovaMissao = Omit<Missao, 'idMissao' | 'status'>
 
 export interface ConclusaoMissao {
     missao: Missao
-    pontos​Usuario: number
+    pontosUsuario: number
 }
