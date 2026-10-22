@@ -1,38 +1,29 @@
-export type Missao = {
-  id: number
-  titulo: string
-  descricao: string
-  icone: string
-  recompensa: string
-}
+import type { NovaMissao } from '../types'
 
-export const missoes: Missao[] = [
+// Missões do dia criadas para cada usuário novo (a API exige um CPF por missão)
+export const MISSOES_INICIAIS: Omit<NovaMissao, 'cpfUsuario'>[] = [
   {
-    id: 1,
     titulo: 'Caminhe 2km',
     descricao: 'Registre uma caminhada de pelo menos 2km durante o dia.',
-    icone: '🚶',
-    recompensa: 'R$ 1,20',
+    pontos: 30,
+    categoria: 'MOBILIDADE',
   },
   {
-    id: 2,
     titulo: 'Recicle materiais',
     descricao: 'Separe e descarte corretamente materiais recicláveis.',
-    icone: '♻️',
-    recompensa: 'R$ 0,90',
+    pontos: 20,
+    categoria: 'SUSTENTABILIDADE',
   },
   {
-    id: 3,
     titulo: 'Compartilhe uma carona',
     descricao: 'Divida o trajeto com outra pessoa, reduzindo emissões.',
-    icone: '🚗',
-    recompensa: 'R$ 1,50',
+    pontos: 40,
+    categoria: 'MOBILIDADE',
   },
   {
-    id: 4,
     titulo: 'Use transporte público',
     descricao: 'Registre uma viagem de ônibus, metrô ou trem.',
-    icone: '🚌',
-    recompensa: 'R$ 0,80',
+    pontos: 25,
+    categoria: 'ENGAJAMENTO',
   },
 ]
