@@ -6,7 +6,9 @@ import type {
     Missao,
     NovaMissao,
     NovoUsuario,
+    NovoVoucher,
     Usuario,
+    Voucher,
 } from '../types'
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? 'https://rocket-api-0me7.onrender.com'
@@ -38,6 +40,16 @@ export const cadastrarMissao = (dados: NovaMissao) =>
 
 export const concluirMissao = (id: number) =>
     requisicao<ConclusaoMissao>(`/missoes/${id}/concluir`, { method: 'PATCH' })
+
+export const listarVouchers = (cpf?: string) =>
+    requisicao<Voucher[]>(cpf ? `/vouchers?cpf=${encodeURIComponent(cpf)}` : '/vouchers')
+
+export const gerarVoucher = (dados: NovoVoucher) =>
+    requisicao<Voucher>('/vouchers', { method: 'POST', body: JSON.stringify(dados) })
+
+// Usado para atualizar o saldo do usuário depois de gerar um voucher
+export const buscarUsuarioPorCpf = (cpf: string) =>
+    requisicao<Usuario>(`/usuarios/cpf/${encodeURIComponent(cpf)}`)
 
 // A API cadastra uma missão por vez, então criamos as missões do dia em sequência
 export async function criarMissoesIniciais(cpf: string) {
