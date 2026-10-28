@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router';
+import { createBrowserRouter, Navigate } from 'react-router';
 import App from '../App'
 import Home from '../pages/Home'
 import Integrantes from '../pages/Integrantes'
@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <Home /> },
+      { path: 'home', element: <Navigate to="/" replace /> },
       { path: 'integrantes', element: <Integrantes /> },
       { path: 'sobre', element: <Sobre /> },
       { path: 'faq', element: <Faq /> },
@@ -28,8 +29,8 @@ export const router = createBrowserRouter([
       { path: 'missoes/:id', element: <MissaoDetalhe /> },
       { path: 'login', element: <Login /> },
       { path: 'cadastro', element: <Cadastro /> },
-      { path: '*', element: <NaoEncontrada /> },
       { path: 'vouchers', element: <Vouchers /> },
+      { path: '*', element: <NaoEncontrada /> },
     ],
   },
 ])

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router'
+import { Navigate, useLocation, useNavigate } from 'react-router'
 import { buscarUsuarioPorCpf, gerarVoucher, listarVouchers } from '../../services/api'
-import { lerSessao, salvarSessao } from '../../services/sessao'
+import { encerrarSessao, lerSessao, salvarSessao } from '../../services/sessao'
 import Carregando from '../../components/Carregando'
 import MensagemErro from '../../components/MensagemErro'
 import MensagemVazia from '../../components/MensagemVazia'
@@ -25,6 +25,8 @@ export default function Vouchers() {
   const [erro, setErro] = useState('')
   const [aviso, setAviso] = useState('')
 
+  const navigate = useNavigate()
+  const mensagemRota = (useLocation().state as { mensagem?: string } | null)?.mensagem
   const cpf = usuario?.cpf
 
   useEffect(() => {
@@ -34,6 +36,11 @@ export default function Vouchers() {
       .catch((e: Error) => setErro(e.message))
       .finally(() => setCarregando(false))
   }, [cpf])
+
+  function sair() {
+    encerrarSessao()
+    navigate('/login', { state: { mensagem: 'Você saiu da sua conta.' } })
+  }
 
   async function gerar() {
     if (!cpf) return
@@ -81,7 +88,14 @@ export default function Vouchers() {
             <h2 className="text-3xl font-bold mb-2">🎟️ Meus vouchers</h2>
             <p className="text-sm text-slate-600 mb-6">
               Olá, <strong>{usuario.nome}</strong> · Saldo:{' '}
-              <strong className="text-emerald-600">{usuario.pontos} EcoCoins</strong>
+              <strong className="text-emerald-600">{usuario.pontos} EcoCoins</strong>{' · '}
+              <button
+                type="button"
+                onClick={sair}
+                className="text-slate-500 underline hover:text-slate-700"
+              >
+                Sair
+              </button>
             </p>
             <button
               type="button"
@@ -96,6 +110,7 @@ export default function Vouchers() {
           {carregando && (
             <Carregando texto="Carregando vouchers... (a primeira vez pode levar até 1 minuto)" />
           )}
+          {mensagemRota && <p className="text-center text-amber-700 mb-6">{mensagemRota}</p>}
           {erro && <MensagemErro mensagem={erro} />}
           {aviso && <p className="text-center text-emerald-700 mb-6">{aviso}</p>}
 
