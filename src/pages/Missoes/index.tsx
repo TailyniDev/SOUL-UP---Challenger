@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router'
+import { concluirMissao, criarMissoesIniciais, listarMissoes } from '../../services/api'
+import { encerrarSessao, lerSessao, salvarSessao } from '../../services/sessao'
+import type { Missao } from '../../types'
 import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router'
 import { buscarUsuarioPorCpf, gerarVoucher, listarVouchers } from '../../services/api'
@@ -25,6 +30,8 @@ export default function Vouchers() {
   const [erro, setErro] = useState('')
   const [aviso, setAviso] = useState('')
 
+  const navigate = useNavigate()
+  const mensagemRota = (useLocation().state as { mensagem?: string } | null)?.mensagem
   const cpf = usuario?.cpf
 
   useEffect(() => {
@@ -35,6 +42,13 @@ export default function Vouchers() {
       .finally(() => setCarregando(false))
   }, [cpf])
 
+  function sair() {
+    encerrarSessao()
+    navigate('/login', { state: { mensagem: 'Você saiu da sua conta.' } })
+  }
+
+  async function concluir(missao: Missao) {
+    if (!usuario) return
   async function gerar() {
     if (!cpf) return
     setErro('')
@@ -65,6 +79,16 @@ export default function Vouchers() {
     )
   }
 
+  if (!usuario) {
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ mensagem: 'Faça login para ver e completar suas missões.' }}
+      />
+    )
+  }
+
   return (
     <>
       <section className="bg-slate-900 text-center py-20 px-4 text-white">
@@ -78,6 +102,18 @@ export default function Vouchers() {
       <section className="py-16 px-4 bg-slate-50">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10">
+            <h2 className="text-3xl font-bold mb-2">📋 Missões de hoje</h2>
+            <p className="text-sm text-slate-600">
+              Olá, <strong>{usuario.nome}</strong> · Saldo:{' '}
+              <strong className="text-emerald-600">{usuario.pontos} EcoCoins</strong>{' · '}
+              <button
+                type="button"
+                onClick={sair}
+                className="text-slate-500 underline hover:text-slate-700"
+              >
+                Sair
+              </button>
+            </p>
             <h2 className="text-3xl font-bold mb-2">🎟️ Meus vouchers</h2>
             <p className="text-sm text-slate-600 mb-6">
               Olá, <strong>{usuario.nome}</strong> · Saldo:{' '}
@@ -96,6 +132,23 @@ export default function Vouchers() {
           {carregando && (
             <Carregando texto="Carregando vouchers... (a primeira vez pode levar até 1 minuto)" />
           )}
+
+          {mensagemRota && <p className="text-center text-amber-700 mb-6">{mensagemRota}</p>}
+          {erro && <p className="text-center text-red-500 mb-6">{erro}</p>}
+          {aviso && <p className="text-center text-emerald-700 mb-6">{aviso}</p>}
+
+          {!carregando && !erro && missoes.length === 0 && (
+            <div className="text-center mb-6">
+              <p className="text-slate-500 mb-4">Você ainda não tem missões.</p>
+              <button
+                type="button"
+                onClick={gerarMissoes}
+                disabled={gerando}
+                className="bg-emerald-600 text-white font-semibold px-6 py-2.5 rounded-full hover:bg-emerald-700 transition-colors disabled:opacity-60"
+              >
+                {gerando ? 'Gerando...' : 'Gerar missões do dia'}
+              </button>
+            </div>
           {erro && <MensagemErro mensagem={erro} />}
           {aviso && <p className="text-center text-emerald-700 mb-6">{aviso}</p>}
 

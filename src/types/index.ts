@@ -39,6 +39,7 @@ export interface ConclusaoMissao {
     missao: Missao
     pontosUsuario: number
 }
+}
 
 export type StatusVoucher = 'DISPONIVEL' | 'UTILIZADO'
 

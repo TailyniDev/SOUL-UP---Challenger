@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router'
+import { Link, Navigate, useParams } from 'react-router'
 import { buscarMissao } from '../../services/api'
 import type { Missao } from '../../types'
 
@@ -15,12 +15,25 @@ export default function MissaoDetalhe() {
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState('')
 
+  const idValido = Number.isInteger(Number(id)) && Number(id) > 0
+
   useEffect(() => {
+    if (!idValido) return
     buscarMissao(Number(id))
       .then(setMissao)
       .catch((e: Error) => setErro(e.message))
       .finally(() => setCarregando(false))
-  }, [id])
+  }, [id, idValido])
+
+  if (!idValido) {
+    return (
+      <Navigate
+        to="/missoes"
+        replace
+        state={{ mensagem: `"${id}" não é uma missão válida.` }}
+      />
+    )
+  }
 
   if (carregando) {
     return (
