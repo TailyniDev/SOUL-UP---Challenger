@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { Navigate } from 'react-router'
 import { buscarUsuarioPorCpf, gerarVoucher, listarVouchers } from '../../services/api'
 import { lerSessao, salvarSessao } from '../../services/sessao'
+import Carregando from '../../components/Carregando'
+import MensagemErro from '../../components/MensagemErro'
+import MensagemVazia from '../../components/MensagemVazia'
 import type { Voucher } from '../../types'
 
 const CUSTO_EM_PONTOS = 50
@@ -91,17 +94,13 @@ export default function Vouchers() {
           </div>
 
           {carregando && (
-            <p className="text-center text-slate-500 mb-6">
-              Carregando vouchers... (a primeira vez pode levar até 1 minuto)
-            </p>
+            <Carregando texto="Carregando vouchers... (a primeira vez pode levar até 1 minuto)" />
           )}
-          {erro && <p className="text-center text-red-500 mb-6">{erro}</p>}
+          {erro && <MensagemErro mensagem={erro} />}
           {aviso && <p className="text-center text-emerald-700 mb-6">{aviso}</p>}
 
           {!carregando && !erro && vouchers.length === 0 && (
-            <p className="text-center text-slate-500 mb-6">
-              Você ainda não tem vouchers. Complete missões para juntar EcoCoins!
-            </p>
+            <MensagemVazia texto="Você ainda não tem vouchers. Complete missões para juntar EcoCoins!" />
           )}
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
