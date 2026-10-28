@@ -6,9 +6,10 @@ const LINKS = [
   { to: "/sobre", rotulo: "Sobre" },
   { to: "/faq", rotulo: "FAQ" },
   { to: "/contato", rotulo: "Contato" },
-  { to: "/solucao", rotulo: "Solução" },
   { to: "/missoes", rotulo: "Missões" },
+  { to: "/vouchers", rotulo: "Vouchers" },
   { to: "/login", rotulo: "Login" },
+  
 ];
 
 type MenuProps = {

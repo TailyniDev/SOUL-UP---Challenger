@@ -39,3 +39,19 @@ export interface ConclusaoMissao {
     missao: Missao
     pontosUsuario: number
 }
+}
+
+export type StatusVoucher = 'DISPONIVEL' | 'UTILIZADO'
+
+export interface Voucher {
+    idVoucher: number
+    codigo: string
+    cpfUsuario: string
+    tipoBeneficio: string
+    valor: number
+    status: StatusVoucher
+    validade: string
+}
+
+// O tipo de benefício é opcional: a API usa "passagem de metrô gratuita" como padrão
+export type NovoVoucher = Pick<Voucher, 'cpfUsuario'> & { tipoBeneficio?: string }
