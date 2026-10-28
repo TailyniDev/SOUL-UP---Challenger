@@ -11,6 +11,7 @@ import MissaoDetalhe from '../pages/MissaoDetalhe'
 import Login from '../pages/Login';
 import Cadastro from '../pages/Cadastro';
 import NaoEncontrada from '../pages/NaoEncontrada';
+import Vouchers from '../pages/Vouchers'
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       { path: 'login', element: <Login /> },
       { path: 'cadastro', element: <Cadastro /> },
       { path: '*', element: <NaoEncontrada /> },
+      { path: 'vouchers', element: <Vouchers /> },
     ],
   },
 ])
