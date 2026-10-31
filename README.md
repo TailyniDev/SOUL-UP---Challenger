@@ -88,7 +88,7 @@ SOUL-UP---Challenger/
 
 - 🔗 **Repositório GitHub:** https://github.com/TailyniDev/SOUL-UP---Challenger
 - 🌐 **Deploy (Vercel):** https://soul-up-challenger.vercel.app
-- 🎥 **Vídeo de apresentação (YouTube):** [COLAR AQUI O LINK DO VÍDEO DA SPRINT 4]
+- 🎥 **Vídeo de apresentação (YouTube):** https://youtu.be/0JX9CXU95GA
 - ⚙️ **API publicada (Render):** https://rocket-api-0me7.onrender.com
 - 📦 **Repositório da API:** https://github.com/Tadeul/rocket-api
 
