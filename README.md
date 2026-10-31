@@ -87,7 +87,7 @@ SOUL-UP---Challenger/
 ### Links do projeto
 
 - 🔗 **Repositório GitHub:** https://github.com/TailyniDev/SOUL-UP---Challenger
-- 🌐 **Deploy (Vercel):** https://soul-up-challenger.vercel.app
+- 🌐 **Deploy (Vercel):** [https://soul-up-challenger.vercel.app](https://soul-up-challenger-6wkr.vercel.app/)
 - 🎥 **Vídeo de apresentação (YouTube):** https://youtu.be/0JX9CXU95GA
 - ⚙️ **API publicada (Render):** https://rocket-api-0me7.onrender.com
 - 📦 **Repositório da API:** https://github.com/Tadeul/rocket-api
